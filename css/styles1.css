@@ -1,0 +1,146 @@
+*{
+	box-sizing: border-box;
+}
+html{
+	scroll-behavior: smooth;
+}
+html,body{
+	height: 100%;
+}
+svg{
+	cursor: pointer;
+}
+body{
+	background-image: linear-gradient(to right, #e55d87,#5fc3e4);
+	background-size: 600% 600%;
+	animation: gradient 15s infinite;/*
+	font-family: 'Raleway', sans-serif;*/
+}
+
+
+
+@keyframes gradient {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+     background-position: 0% 50%;
+  }
+
+}
+.ml6 {
+  position: relative;
+  font-weight: 900;
+  font-size: 3.3em;
+}
+
+.ml6 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml6 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.a-words a:hover{
+	text-decoration:none;
+	font-family: Brush Script MT, Brush Script Std, cursive;
+}
+
+.vert .carousel-item-next.carousel-item-left,
+.vert .carousel-item-prev.carousel-item-right {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.vert .carousel-item-next,
+.vert .active.carousel-item-right {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+}
+
+.vert .carousel-item-prev,
+.vert .active.carousel-item-left {
+-webkit-transform: translate3d(0,100%, 0);
+        transform: translate3d(0,100%, 0);
+}
+@keyframes h1{
+	from{transform:translateY(0px)}to{transform:translateY(-8px)}
+}
+@-webkit-keyframes bounce1{
+	from{transform:translateY(0px)}to{transform:translateY(-8px)}
+}
+.h1{
+	animation: bounce1 1s infinite alternate;
+	-webkit-animation: bounce1 1s infinite alternate;
+	animation-delay:0s;
+}
+#banner{
+	margin: 32px 0;
+}
+.bbb{
+	position: absolute;
+	top: 0;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 22px;
+}
+.bbb li{
+	width: 120px;
+	height: 45px;
+	margin-bottom: 5px;
+	text-align: center;
+	background: white;
+	border-radius: 8px 0 0px 8px;
+	border: 2px solid lightgray;
+}
+/*.bbb li::before{
+	content: "carousel";
+}*/
+.bbb li:hover{
+	background: lightgray;
+	transform: translateX(-20px);
+	width: 140px;
+}
+.ccc{
+	max-width: 1024px;
+
+}
+
+.ccc img{
+	border:1px gray solid;
+	box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+}
+
+@media only screen and (max-width: 768px){
+	.bbb{
+		display: none;
+	}
+	.biii{
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.carousel-indicators{
+		display: none;
+	}
+	.ccc{
+		padding-left: 120px;
+	}
+}
+
+.container h4{
+	font-size: 30px;
+}

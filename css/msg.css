@@ -1,0 +1,90 @@
+
+.DMY{
+	width: 100px;
+	margin: 5px auto;
+	text-align: center;
+	background: beige;
+	font-family: Comic Sans MS;
+}
+
+.a_msg{
+	margin: 10px 16px 16px 70px;
+	border: 1px solid black;
+	padding: 20px;
+	min-height: 85px;
+	box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.5),inset 1px 1px 4px 2px rgba(20%,20%,40%,0.5);
+	border-radius: 8px;
+	position: relative;
+	background-color: white;
+}
+.a_msg::before{
+	content: attr(id);
+	position: absolute;
+	top: 5px;
+	left: -60px;
+	font-weight: bold;
+}
+.floor{
+	position: relative;
+	top: 0px;
+	left: -85px;
+}
+.a_msg_1{
+	width: 150px;
+	top: 20px;
+	left: 20px;
+	position: absolute;
+	word-break: break-all;
+	font-weight: bold;
+}
+
+.a_msg_1 > img{
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	border: 1px solid;
+	vertical-align: middle;
+}
+.a_msg_1 div{
+	padding: 0 10px;
+	width: 100px;
+	display: inline-block;
+}
+.msg_time{
+	color: #ADADAD;
+	float: right;
+}
+.msg-content{
+	font-size: 16px;
+	margin: 0 50px 0 150px;
+	/*border: 1px solid;*/
+	padding: 0 10px;
+	word-break: break-word;
+}
+.msg-content *{
+	vertical-align: bottom;
+}
+.msg-content img{
+	width: 100%;
+	max-width: 300px;
+}
+.msg-content a{
+	color: blue;
+	text-decoration: none;
+}
+.msg-content audio{
+	max-width: 100%;
+}
+@media only screen and (max-width: 768px){
+	.a_msg_1{
+		width: 100%;
+		position: static;
+	}
+	.msg-content{
+		width: 100%;
+		margin: 10px 0;
+	}
+	.a_msg_1 div{
+		width: 130px;
+	}
+}

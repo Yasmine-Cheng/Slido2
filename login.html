@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+	<title>Slido2-login</title>
+	<meta charset="utf-8">
+	<meta property="og:title" content="slido2-login"/>
+	<meta property="og:image" content="https://s08170114.s3.amazonaws.com/login_room/img/conversation.png"/>
+	<meta property="og:url" content="https://s08170114.s3.amazonaws.com/login_room/login.html"/>
+	<meta property="og:site_name" content="slido2"/>
+	<meta property="og:type" content="website"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="img/chat-box.png" type="image/x-icon" />
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<!-- 引入 firebase 函式庫 -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="h-100">
+	<div class="block" id="top-area">
+		<div class="container center-A">
+			<div class="row">
+				<div class="col-9">
+					<div class="row">
+						<div class="col-4"></div>
+						<div class="col-8 text-center h1 display-3 text-white" style="font-weight: 400;font-size: 3.3em;">Log in</div>
+					</div>
+					<div class="row my-5">
+						<div class="col-4 text-right" style="font-size: 20px">Email:</div>
+						<div class="col-8"><input class="form-control" type="email" name="email" id="log-email" placeholder="Enter your email"></div>
+					</div>
+					<div class="row my-5">
+						<div class="col-4 text-right"style="font-size: 20px">Password:</div>
+						<div class="col-8"><input class="form-control" type="password" name="pwd" id="log-pwd" placeholder="Enter your password"></div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="h1 center-B">
+						<svg class="bi bi-arrow-right-circle" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" onclick="login()" style="cursor: pointer;">
+							<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+							<path fill-rule="evenodd" d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+							<path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<p><span class="pointer my-3" data-toggle="modal" data-target="#SignUpForm">Create your account</span></p>
+				<p><span class="pointer my-3" onclick="removeModal()">Join as a visitor</span></p>
+			</div>
+		</div>
+	</div>
+	<div class="block" id="bot-area">
+		<div class="container text-center center-A">
+			<img src="img/user.png" id="UserPic1" data-toggle="modal" data-target="#Profile">
+			<img src="img/user.png" id="UserPic2" data-toggle="modal" data-target="#QuitVisitor">
+			<h4 id="UserName1" class="my-3">Visitor</h4>
+			<h1 class="my-3">Join a chat room</h1>
+			<span class="JoinRoom my-3">
+				#
+				<input class="InputRoom" type="text" name="roomcode" placeholder="Enter code" id="RoomCode" maxlength="9">
+				<svg class="bi bi-arrow-right" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer;" onclick="JoinRoom()">
+					<path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+					<path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z"/>
+				</svg>
+			</span>
+		</div>
+	</div>
+	<div class="modal" id="SignUpForm">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Create your account</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input class="form-control" type="email" name="email" id="SignEmail" placeholder="Enter your email">
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input class="form-control" type="password" name="password" id="SignPwd1">
+					</div>
+					<div class="form-group">
+						<label for="password">Comfirm Password:</label>
+						<input class="form-control" type="password" name="password" id="SignPwd2">
+					</div>
+					<div class="form-group">
+						<button class="form-control" onclick="signup()">Sign Up And Log In</button>
+					</div>
+				</div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+    		</div>
+  		</div>
+	</div>
+	<div class="modal" id="Profile">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Edit Profile</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="form-group ">
+						<label>Name:</label>
+						<input class="form-control" type="text" name="name" id="storename" placeholder="Enter Your Name" maxlength="20">
+					</div>
+					<div class="form-group">
+						<label>Profile Picture:</label><img src="img/user.png" id="changeimg">
+						<label class="btn01">
+							<input type="file" accept="image/*" id="storeimg" style="display: none;">
+							<i class="fa fa-photo"></i> 上傳圖片
+						</label>
+						<div class="progress opacity0" id="outbar1">
+							<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="duringupload"></div>
+						</div>
+					</div>
+					<button class="form-control bg-success text-white" onclick="storeall()">Save</button>
+				</div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="signout()">Log out</button>
+				</div>
+    		</div>
+  		</div>
+	</div>
+	<div class="modal" id="QuitVisitor">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Quit visitor account</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<h5>Go back to log in or create your account</h5>
+				</div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="quit()">Quit</button>
+				</div>
+    		</div>
+  		</div>
+	</div>
+	<div class="container-fluid py-1 mt-1 bg-light fixed-bottom">
+		<div class="container">
+			<div class="footer">
+				<p class="ending text-center font-weight-bold mb-0 p-2" style="font-size: 15px">Copyright © 2020 網路資料科技應用第十組貳點零•Maintain by the same group.</p>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="container-fluid bg-light align-middle">
+		<div class="footer container">
+			<p class="ending text-center font-weight-bold mb-0 p-4">Copyright © 2020 網路資料科技應用第十組貳點零•Maintain by the same group.</p>
+		</div>
+	</div> -->
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/join.js"></script>
+</body>
+</html>

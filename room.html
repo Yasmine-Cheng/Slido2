@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<title>聊天室</title>
+	<meta property="og:title" content="slido2-room"/>
+	<meta property="og:image" content="https://s08170114.s3.amazonaws.com/login_room/img/conversation.png"/>
+	<meta property="og:site_name" content="slido2"/>
+	<meta property="og:type" content="website"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="icon" href="img/chat-box.png" type="image/x-icon" />
+	<link rel="stylesheet" href="css/room.css">
+	<!-- 引入 firebase 函式庫 -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+	<script type="text/javascript" src="js/deal.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/msg.css">
+</head>
+<body onload="begin()">
+	<nav>
+		
+	  <div class="nav-left">
+	  	<a href="login.html" style="color: black;">
+	  		<svg class="bi bi-house-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+				<path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+			</svg>
+		</a>
+		<span style="font-size: 23px;">Room: </span>
+	  	<span id="location"style="font-size: 23px;">房間名稱</span> <!-- (編號:) -->
+	  </div>
+	  <div class="nav-right">
+	  	聊天室
+	  	<span id="button">
+	  		<svg class="bi bi-list" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+			</svg>
+	  	</span>
+	  </div>
+	</nav>
+	<div class="main">
+	  <div class="main-left">
+	    <div class="main-left-top" id="fath">
+	    	<!-- <button onclick="gotop()" id="goTop">Top</button> -->
+	    	<!-- <div class="DMY">06/06/2020</div>
+			<div class="a_msg" id="B0">
+		  		<span class="msg_time">00:00</span>
+		  		<div class="a_msg_1">
+		  			<img src="img/user.png"><div>Visitor</div>
+		  		</div>
+		  		<div class="msg-content">預設樣式
+		  		</div>
+			</div> -->
+	    </div>
+	    <div class="main-left-bot">
+	    	<div class="toolbar">
+	    		<div id="tool">
+					<i class="fa fa-close" onclick="toolquit()"></i>
+					<div id="c1">
+						<select id="select_fsize" style="font-weight: bold;">
+							<option value="16px" style="font-weight: bold;">小</option>
+							<option value="24px" style="font-weight: bold;">中</option>
+							<option value="32px" style="font-weight: bold;">大</option>
+						</select>
+						<input type="color" id="insert-color">
+						<input type="text" id="Aa">
+						<button onclick="Aa()" style="font-weight: bold;">插入</button>
+					</div>
+					<!-- <div id="c2">
+						<select id="select_fsize">
+							<option value="16px">小</option>
+							<option value="24px">中</option>
+							<option value="32px">大</option>
+						</select>
+						<input type="text" id="T">
+						<button onclick="T()">插入</button>
+					</div> -->
+					<div id="c3">
+						<input type="text" id="i">
+						<button onclick="i()" style="font-weight: bold;">插入</button>
+					</div>
+					<div id="c4">
+						<label class="btn01">
+							<input type="file" id="fileButton" accept="image/*" style="display: none;"><i class="fa fa-photo"></i> 選擇圖片
+						</label>
+						<!-- <button id="uploadimg" style="font-weight: bold;">上傳圖片</button> -->
+						<div class="progress opacity0" id="outbar1">
+							<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="duringimg"></div>
+						</div>
+						<!-- <div id="duringimg" class="none">Uploading...</div> -->
+					</div>
+					<div id="c5">
+						<label class="btn01">
+							<input type="file" id="musicFile" accept="audio/*" style="display: none;"><i class="fa fa-music"></i> 選擇音檔
+						</label>
+						<!-- <button id="uploadmusic" style="font-weight: bold;">上傳音檔</button> -->
+						<div class="progress opacity0" id="outbar2">
+							<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="duringmusic"></div>
+						</div>
+						<!-- <div id="duringmusic" class="none">Uploading...</div> -->
+					</div>
+					<div id="c6">
+						<i class="fa fa-angle-double-up" onclick="gotop()"></i>
+						<i class="fa fa-angle-double-down" onclick="scrollToBottom()"></i>
+						<input type="number" id="Floor" style="font-weight: bold;">
+						<i class="fa fa-level-up" onclick="jumpF()"></i>
+					</div>
+	    		</div>
+	    		<i class="fa fa-font" onclick="call(c1)" title="字型大小"></i>
+
+<!-- 			  	<i class="fa fa-text-height" onclick="call(c2)"></i>
+			  	<i class="fa fa-text-width" onclick="call(c2)"></i> -->
+			  	<i class="fa fa-italic" onclick="call(c3)"title="斜體"></i>
+			  	<i class="fa fa-file-image-o" onclick="call(c4)" title="插入圖片"></i>
+			  	<i class="fa fa-file-sound-o" onclick="call(c5)"title="插入音檔"></i>
+			  	<i class="fa fa-bolt" onclick="call(c6)"title="更換樓層"></i>
+			  	<i class="fa fa-send" onclick="storedata()"title="傳送"></i>
+<script>
+	$(document).tooltip();
+</script>
+	    	</div>
+			<div id="uuu">
+				<textarea id="msg" placeholder="請輸入留言..." onkeydown="if(event.keyCode == 13) return false;"></textarea>
+			</div>
+
+	    </div>
+	  </div>
+	  <div class="main-right none" id="beenTo">訪客無法使用此功能</div>
+	</div>
+	<script src="js/room.js"></script>
+	<script type="text/javascript" src="js/toolbar.js"></script>
+</body>
+</html>

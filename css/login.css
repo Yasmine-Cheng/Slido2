@@ -1,0 +1,100 @@
+body{
+	background-image: linear-gradient(to right, #e55d87,#5fc3e4);
+	background-size: 600% 600%;
+	animation: gradient 15s infinite;
+	font-family: 'Raleway', sans-serif;
+}
+
+
+
+@keyframes gradient {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+     background-position: 0% 50%;
+  }
+
+}
+
+.center-A{
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.center-B{
+	position: absolute;
+	top: 52%;
+}
+.pointer{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.pointer:hover{
+	text-decoration: underline;
+}
+
+.JoinRoom{
+	border: none;
+	border-bottom: 3px solid;
+	padding-bottom: 8px;
+}
+.InputRoom{
+	width: 250px;
+	border:1px solid white;
+	border-radius:5px;
+}
+.block{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+#UserPic1{
+	width: 100px;
+	height: 100px;
+	margin: 0 0 16px;
+	border-radius: 999em;
+	cursor: pointer;
+	border: 3px solid;
+}
+#UserPic2{
+	width: 100px;
+	height: 100px;
+	margin: 0 0 16px;
+	border-radius: 999em;
+	/*cursor: pointer;*/
+	border: 3px solid;
+}
+#changeimg{
+	width: 100px;
+	height: 100px;
+	border-radius: 999em;
+	border: 3px solid;
+}
+.btn01{
+	border-radius: 5px;
+	background: green;
+	color: white;
+	height: 40px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.btn01:hover{
+	color: white;
+}
+.progress-bar{
+  width: 1%;
+}
+.opacity0{
+	opacity: 0;
+}
+.progress-bar99{
+  width: 99%;
+}

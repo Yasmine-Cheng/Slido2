@@ -1,0 +1,285 @@
+* {
+  font-family: 微軟正黑體;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  position: fixed;
+  z-index: 4;
+  background: white;
+  padding: 10px 20px;
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+}
+nav .nav-left {
+  float: left;
+}
+nav .nav-right {
+  float: right;
+}
+
+.main {
+  height: 100%;
+  font-size: 0px;
+  width: 100%;
+  /*background: lightgreen;*/
+
+  background-image: linear-gradient(to right, #e55d87,#5fc3e4);
+  background-size: 600% 600%;
+  animation: gradient 15s infinite;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+
+@keyframes gradient {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+     background-position: 0% 50%;
+  }
+
+}
+
+
+
+.main-left {
+  padding-top: 50px;
+  padding-bottom: 150px;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.main-left .main-left-top {
+  position: relative;
+  overflow: auto;
+  border: 1px solid;
+  width: 100%;
+  height: 100%;
+}
+/*#goTop{
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  z-index: 2;
+  top: 70px;
+  right: 30px;
+  border: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  display: none;
+}*/
+/*#goTop:focus{
+  outline: none;
+  border: none;
+}*/
+.main-left .main-left-bot {
+  border: 1px solid;
+  width: 100%;
+  height: 150px;
+  /*display: none;*/
+}
+
+.main-left button{
+  border: 1px black solid;
+  border-radius: 5px;
+  font-family: 微軟正黑體;
+  height: 40px;
+  width: 55px;
+  letter-spacing: 1.5px;　
+}
+
+.main-left select{
+  border: 1px black solid;
+  border-radius: 5px;
+  font-family: 微軟正黑體;
+  height: 40px;
+  width: 55px;
+  letter-spacing: 1.5px;　
+}
+
+.main-left input{
+  border: 1px black solid;
+  border-radius: 5px;
+  height: 40px;
+  width: 55px;
+}
+
+#uploadimg,#uploadmusic{
+  height: 40px;
+  width: 85px;
+  letter-spacing: 1.2px;　
+}
+
+.main-right {
+  overflow: auto;
+  padding: 66px 16px 16px;
+  font-size: 16px;
+  display: inline-block;
+  border: 1px solid;
+  width: 25%;
+  height: 100%;
+  background: lightgray;
+}
+.main-right div{
+  padding: 16px;
+  border: 1px solid;
+  border-radius: 8px;
+  width: 100%;
+  margin: 16px 0;
+  background-color: white;
+}
+.main-right div img{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px solid;
+  vertical-align: middle;
+}
+.main-right div span{
+  display: inline-block;
+  word-spacing: 2px;
+  font-weight: bold;
+}
+
+.none {
+  display: none;
+}
+
+.wid70 {
+  width: 75%;
+}
+
+svg{
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.toolbar{
+  position: relative;
+  padding: 5px 20px;
+  width: 100%;
+  height: 50px;
+  font-size: 0;
+  background-color:white; 
+}
+#tool{
+  position: absolute;
+  top: 0;
+  left: -101%;
+  padding: 5px 0 5px 20px;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  z-index: 2;
+  background-color: lightyellow;
+  transition: 0.5s;
+}
+
+#c1,#c2,#c3,#c4,#c5,#c6{
+  display: none;
+
+}
+
+#Aa,#T,#i{
+  width: 100px;
+}
+#i{
+  font-style: italic;
+}
+#Floor{
+  width: 60px;
+}
+.toolbar i{
+  cursor: pointer;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border: 3px solid;
+  border-radius: 5px;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+#send{
+  background: transparent;
+}
+
+#msg{
+  width: 100%;
+  height: 98px;
+  padding: 16px;
+  border: none;
+  resize: none;
+}
+
+#msg:focus{
+  border: none;
+  outline: none;
+}
+
+.btn01{
+  display: inline-block;
+  background:  #1956d0;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  height: 40px;
+}
+.btn01 i{
+  width: 28px;
+  border: 0;
+  vertical-align: middle;
+}
+.opacity0{
+  opacity: 0;
+}
+/*#outbar1,#outbar2{
+  position: relative;
+  top: -40px;
+  left: 125px;
+}*/
+.progress-bar{
+  width: 1%;
+  transition: 1s;
+}
+.progress-bar99{
+  width: 99%;
+}
+
+@media only screen and (max-width: 768px){
+  .main-left{
+    width: 100%;
+  }
+  .main-right{
+    min-width: 180px;
+    position: absolute;
+    right: 0;
+    z-index: 3;
+  }
+  #c1,#c2,#c3,#c4,#c5{
+    width: 280px;
+  }
+  /*#goTop{
+    top: 70px;
+    right: 30px;
+  }*/
+}
